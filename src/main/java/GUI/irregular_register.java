@@ -35,7 +35,7 @@ public class irregular_register extends javax.swing.JFrame {
             e.printStackTrace();
         }
         initComponents();
-
+        setLocationRelativeTo(null);
     }
    
 

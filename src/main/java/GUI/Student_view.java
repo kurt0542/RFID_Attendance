@@ -44,20 +44,22 @@ public class Student_view extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1024, 400));
+        setPreferredSize(new java.awt.Dimension(1010, 317));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbl1.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        lbl1.setForeground(new java.awt.Color(255, 255, 255));
+        lbl1.setForeground(new java.awt.Color(0, 0, 0));
         lbl1.setText("Section:");
         getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 60, -1, -1));
 
         lbl2.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        lbl2.setForeground(new java.awt.Color(255, 255, 255));
+        lbl2.setForeground(new java.awt.Color(0, 0, 0));
         lbl2.setText("Student Number:");
         getContentPane().add(lbl2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
         lbl3.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        lbl3.setForeground(new java.awt.Color(255, 255, 255));
+        lbl3.setForeground(new java.awt.Color(0, 0, 0));
         lbl3.setText("Student Name:");
         getContentPane().add(lbl3, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 60, -1, -1));
 
@@ -125,7 +127,7 @@ public class Student_view extends javax.swing.JFrame {
             .addGroup(panel1Layout.createSequentialGroup()
                 .addGap(71, 71, 71)
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 705, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 707, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton1)

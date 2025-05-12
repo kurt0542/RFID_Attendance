@@ -10,6 +10,7 @@ package GUI;
  *
  * @author admin
  */
+import DBConnection.DatabaseConnection;
 import com.formdev.flatlaf.FlatLightLaf;
 import java.sql.Connection;
 import java.sql.Statement;
@@ -21,39 +22,20 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 public class InsertResult extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InsertResult
-     */
-    public InsertResult() {
-        initComponents();
-         try {
-            Connection();
-        } catch (SQLException ex) {
-            Logger.getLogger(InsertResult.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     Connection con;
     Statement st;
-
-    private static final String DbName = "attendance";
-    private static final String DbDriver = "com.mysql.cj.jdbc.Driver";
-    private static final String DbUrl = "jdbc:mysql://localhost:3306/" + DbName;
-    private static final String DbUsername = "root";
-    private static final String DbPassword = "";
-
-    public void Connection() throws SQLException {
-        try {
-            Class.forName(DbDriver);
-            con = DriverManager.getConnection(DbUrl, DbUsername, DbPassword);
+    public InsertResult() {
+        con = new DatabaseConnection().connectDB();
+        try{
             st = con.createStatement();
-            if (con != null) {
-                System.out.println("Connection successful");
-            }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Registration.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(Exception e){
+            e.printStackTrace();
         }
-
+        initComponents();
+        setLocationRelativeTo(null);
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -91,7 +73,8 @@ public class InsertResult extends javax.swing.JFrame {
         jLabel8.setText("ENTREP");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMinimumSize(new java.awt.Dimension(813, 470));
+        setPreferredSize(new java.awt.Dimension(813, 470));
 
         jButton1.setForeground(new java.awt.Color(0, 0, 204));
         jButton1.setText("Insert Result");
@@ -126,50 +109,34 @@ public class InsertResult extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
-                .addContainerGap(278, Short.MAX_VALUE))
+                .addContainerGap(290, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 442));
-
         jLabel1.setText("Student number: ");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 47, -1, -1));
 
         jLabel2.setText("EAPP");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 85, 53, -1));
-        getContentPane().add(s1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 40, 130, -1));
 
         jLabel3.setText("COMPROG");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 67, -1));
 
         jLabel4.setText("CONARTS");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         jLabel5.setText("P.E ");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(213, 117, 53, -1));
 
         jLabel6.setText("Average:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 53, -1));
 
         jLabel7.setText("ENTREP");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 53, -1));
-        getContentPane().add(s2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 130, -1));
-        getContentPane().add(s3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 130, -1));
-        getContentPane().add(s4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 130, -1));
 
         s5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 s5ActionPerformed(evt);
             }
         });
-        getContentPane().add(s5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 130, -1));
-        getContentPane().add(s6, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 230, 130, -1));
 
         s7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 s7ActionPerformed(evt);
             }
         });
-        getContentPane().add(s7, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 130, -1));
 
         jButton5.setText("Save");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -177,13 +144,10 @@ public class InsertResult extends javax.swing.JFrame {
                 jButton5ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 380, -1, -1));
 
         s8.setEnabled(false);
-        getContentPane().add(s8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 320, 130, -1));
 
         jLabel9.setText("III");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 53, -1));
 
         jButton4.setText("Logout");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +155,89 @@ public class InsertResult extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 380, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(jButton4)))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(s1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s5, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s6, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s7, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(s8, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(jButton5)))
+                .addContainerGap(353, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jLabel1)
+                .addGap(22, 22, 22)
+                .addComponent(jLabel2)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel5)
+                .addGap(27, 27, 27)
+                .addComponent(jLabel4)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel3)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel7)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel9)
+                .addGap(14, 14, 14)
+                .addComponent(jLabel6)
+                .addGap(44, 44, 44)
+                .addComponent(jButton4))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(s1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(s2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(s3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(s4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(s5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(s6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(s7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(s8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(jButton5))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
